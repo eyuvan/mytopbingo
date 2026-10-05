@@ -1,0 +1,53 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+body { background: #0f172a; color: #f8fafc; padding-bottom: 75px; }
+
+/* Top Header */
+.top-bar { display: flex; justify-content: space-around; background: #1e293b; padding: 12px 5px; font-size: 13px; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #eab308; }
+.stat-box { background: #0f172a; padding: 6px 10px; border-radius: 6px; border: 1px solid #334155; }
+.timer-box { color: #ef4444; font-weight: bold; }
+
+/* Views */
+.view { display: none; padding: 15px; }
+.view.active { display: block; }
+.section-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.badge { background: #eab308; color: #000; font-weight: bold; font-size: 12px; padding: 3px 8px; border-radius: 12px; }
+
+/* 1 - 600 Cartela Grid */
+.cartela-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; max-height: 220px; overflow-y: auto; background: #1e293b; padding: 10px; border-radius: 8px; border: 1px solid #334155; }
+.cartela-btn { background: #334155; color: #fff; border: none; padding: 10px 0; border-radius: 4px; font-weight: bold; cursor: pointer; }
+.cartela-btn.selected { background: #10b981; color: #fff; box-shadow: 0 0 8px #10b981; }
+
+/* 5x5 Cartela Card */
+.bingo-card-wrapper { background: #1e293b; border-radius: 8px; padding: 12px; margin-top: 15px; border: 1px solid #475569; }
+.cartela-header { font-weight: bold; color: #38bdf8; margin-bottom: 8px; text-align: center; }
+.cartela-5x5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
+.cell { background: #0f172a; padding: 10px 0; text-align: center; border-radius: 4px; font-weight: bold; font-size: 14px; border: 1px solid #334155; }
+.cell.free { background: #eab308; color: #000; }
+.cell.marked { background: #ef4444; color: #fff; transform: scale(0.96); transition: 0.2s; }
+
+/* Caller & Board */
+.game-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.game-id-badge { background: #334155; padding: 6px 12px; border-radius: 6px; font-weight: bold; color: #38bdf8; }
+.caller-screen { background: #1e293b; border: 2px solid #38bdf8; border-radius: 12px; padding: 8px 20px; text-align: center; }
+.caller-title { font-size: 11px; color: #94a3b8; }
+.caller-ball { font-size: 28px; font-weight: 900; color: #38bdf8; }
+
+.bingo-board { display: flex; gap: 4px; margin-bottom: 15px; }
+.board-col { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.col-title { background: #4f46e5; text-align: center; padding: 4px; font-weight: bold; border-radius: 3px; font-size: 11px; }
+.num-pill { background: #1e293b; text-align: center; padding: 3px 0; border-radius: 3px; font-size: 11px; color: #94a3b8; }
+.num-pill.called { background: #10b981; color: #fff; font-weight: bold; }
+
+/* Wallet & Buttons */
+.card { background: #1e293b; padding: 15px; border-radius: 8px; margin-bottom: 15px; line-height: 2; border: 1px solid #334155; }
+.deposit-box { background: #1e293b; border: 1px solid #0284c7; padding: 15px; border-radius: 8px; }
+.deposit-box h3 { color: #38bdf8; margin-bottom: 10px; }
+.pay-steps { font-size: 13px; line-height: 1.8; color: #cbd5e1; margin-bottom: 12px; }
+.phone-tag { background: #0f172a; color: #facc15; padding: 2px 6px; border-radius: 4px; }
+.form-group input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 14px; }
+.btn-submit { width: 100%; background: #0284c7; color: #fff; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+.btn-action { background: #eab308; color: #000; border: none; padding: 6px 12px; font-weight: bold; border-radius: 5px; cursor: pointer; margin-top: 8px; }
+/* Navigation */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; display: flex; background: #0f172a; border-top: 1px solid #334155; height: 60px; z-index: 1000; }
+.nav-item { flex: 1; background: transparent; border: none; color: #94a3b8; font-size: 13px; font-weight: bold; cursor: pointer; }
+.nav-item.active { color: #eab308; }

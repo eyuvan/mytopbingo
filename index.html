@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Habesha Bingo</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Header Stats -->
+  <header class="top-bar">
+    <div class="stat-box">Stake: <span id="top-stake">50</span> ETB</div>
+    <div class="stat-box">Main: <span id="top-main-wallet">1,000</span> ETB</div>
+    <div class="stat-box">Play: <span id="top-play-wallet">200</span> ETB</div>
+    <div class="stat-box timer-box">⏱ <span id="countdown">49</span>s</div>
+  </header>
+
+  <!-- 1. LOBBY VIEW (ካርቴላ መምረጫ) -->
+  <main id="lobby-view" class="view active">
+    <div class="section-title">
+      <h3>ካርቴላ ይምረጡ (ከ 1 እስከ 3)</h3>
+      <span class="badge"><span id="selected-count">0</span>/3 ተመርጧል</span>
+    </div>
+    
+    <!-- 1 - 600 Cartela Selection Grid -->
+    <div class="cartela-grid" id="cartela-container"></div>
+
+    <!-- የተመረጡ 5x5 ካርቴላዎች ማሳያ -->
+    <div id="active-cards-container"></div>
+  </main>
+
+  <!-- 2. GAMEPLAY VIEW (የጨዋታ ስክሪን) -->
+  <main id="game-view" class="view">
+    <div class="game-header">
+      <div class="game-id-badge">Game ID: <span id="current-game-id">#0001</span></div>
+      
+      <!-- ቁጥሮች ጥሪ ማሳያ ስክሪን -->
+      <div class="caller-screen">
+        <div class="caller-title">የወጣው ቁጥር</div>
+        <div class="caller-ball" id="current-call">--</div>
+      </div>
+    </div>
+
+    <!-- 1 - 75 Master Board -->
+    <div class="bingo-board">
+      <div class="board-col" id="col-B"><div class="col-title">B (1-15)</div></div>
+      <div class="board-col" id="col-I"><div class="col-title">I (16-30)</div></div>
+      <div class="board-col" id="col-N"><div class="col-title">N (31-45)</div></div>
+      <div class="board-col" id="col-G"><div class="col-title">G (46-60)</div></div>
+      <div class="board-col" id="col-O"><div class="col-title">O (61-75)</div></div>
+    </div>
+
+    <!-- የተጫዋቹ ካርቴላዎች በጨዋታው ውስጥ -->
+    <div id="in-game-cards"></div>
+  </main>
+
+  <!-- 3. WALLET VIEW (Telebirr 0928361886) -->
+  <section id="wallet-view" class="view tab-content">
+    <h2>የሂሳብ ቋት (Wallet)</h2>
+    <div class="card balance-card">
+      <p>💰 Main Wallet: <strong id="wallet-main">1,000 ETB</strong></p>
+      <p>🎮 Play Wallet: <strong id="wallet-play">200 ETB</strong></p>
+      <button class="btn-action" onclick="transferToPlay()">ወደ Play Wallet አዛውር (50 ETB)</button>
+    </div>
+
+    <div class="deposit-box">
+      <h3>በቴሌብር (telebirr) ብር መሙያ</h3>
+      <div class="pay-steps">
+        <p>1. ወደ ቴሌብር አካውንትዎ ይግቡ</p>
+        <p>2. ወደዚህ ስልክ ይላኩ፡ <strong class="phone-tag">0928361886</strong></p>
+        <p>3. የላኩበትን መጠን እና Transaction ID አስገብተው ያረጋግጡ፡</p>
+      </div>
+
+      <div class="form-group">
+        <input type="number" id="deposit-amount" placeholder="የተላከው ብር መጠን (ለምሳሌ፡ 100)" min="10">
+        <input type="text" id="deposit-txnid" placeholder="የትራንዛክሽን ቁጥር (Transaction ID)">
+        <button class="btn-submit" onclick="submitDepositToTelegram()">በቴሌግራም አረጋግጥ</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. HISTORY VIEW -->
+  <section id="history-view" class="view tab-content">
+    <h2>የጨዋታ ታሪክ (History)</h2>
+    <div class="card">
+      <ul class="history-list" id="history-items">
+        <li>Game #0000 - አሸናፊ: Player_78 (+150 ETB)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. PROFILE VIEW -->
+  <section id="profile-view" class="view tab-content">
+    <h2>የተጠቃሚ መረጃ (Profile)</h2>
+    <div class="card profile-card">
+      <p><strong>Telegram ID:</strong> <span id="prof-id">@user</span></p>
+      <p><strong>ስልክ ቁጥር:</strong> <span id="prof-phone">0928361886</span></p>
+      <p><strong>Main Wallet:</strong> <span id="prof-main">1,000 ETB</span></p>
+      <p><strong>Play Wallet:</strong> <span id="prof-play">200 ETB</span></p>
+    </div>
+  </section>
+  <!-- Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" onclick="switchTab('lobby-view', this)">🎮 Game</button>
+    <button class="nav-item" onclick="switchTab('wallet-view', this)">💳 Wallet</button>
+    <button class="nav-item" onclick="switchTab('history-view', this)">📜 History</button>
+    <button class="nav-item" onclick="switchTab('profile-view', this)">👤 Profile</button>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
